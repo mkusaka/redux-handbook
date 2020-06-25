@@ -11,13 +11,13 @@
     "prepare": "gitbook install",
     "watch": "npm run prepare && gitbook serve",
     "build": "npm run prepare && rm -rf _book && gitbook build",
-    "publish": "npm run build && cd _book && git init && git commit --allow-empty -m 'Book update' && git checkout -b gh-pages && git add . && git commit -am 'Book update' && git push git@github.com:bpxl-labs/redux-handbook gh-pages --force"
+    "deploy": "yarn run build && gh-pages -d _book"
   },
   "author": "Black Pixel",
   "license": "MIT",
-  "dependencies": {
-    "gitbook-plugin-ga": "^1.0.1",
-    "gitbook-plugin-prism": "^1.0.0",
-    "gitbook-plugin-sidebar-ad": "0.0.4"
+  "dependencies": {},
+  "devDependencies": {
+    "gitbook": "^2.6.9",
+    "gitbook-cli": "^2.3.2"
   }
 }

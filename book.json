@@ -3,25 +3,9 @@
   "title": "Black Pixel Redux Handbook",
   "root": "./src",
   "plugins": [
-    "ga",
-    "prism",
-    "image-captions",
-    "anchors",
-    "sidebar-ad",
-    "-highlight",
     "-fontsettings"
   ],
   "pluginsConfig": {
-    "ga": {
-      "token": "UA-26426132-7"
-    },
-    "image-captions": {
-      "caption": "_CAPTION_"
-    },
-    "sidebar-ad": {
-      "imageUrl": "https://blackpixel.com/assets/images/bpxl-logo-vertical.svg",
-      "url": "https://blackpixel.com"
-    }
   },
   "styles": {
     "website": "bpxl-theme.css"
