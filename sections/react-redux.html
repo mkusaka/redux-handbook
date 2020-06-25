@@ -17,19 +17,7 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-image-captions/image-captions.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-sidebar-ad/sidebar-ad.css">
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
                 
@@ -69,12 +57,7 @@
 <div class="book">
     <div class="book-summary">
         
-  
             
-<div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search" />
-</div>
-
             
                 <nav role="navigation">
                 
@@ -184,18 +167,6 @@
                 </nav>
             
         
-  <div class="sidebar-addition">
-      
-        <a href="https://blackpixel.com" target="_blank">
-      
-        <img src="https://blackpixel.com/assets/images/bpxl-logo-vertical.svg" />
-      
-        </a>
-      
-      
-      
-  </div>
-
     </div>
 
     <div class="book-body">
@@ -220,69 +191,50 @@
                     <div class="page-wrapper" tabindex="-1" role="main">
                         <div class="page-inner">
                             
-<div id="book-search-results">
-    <div class="search-noresults">
-    
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="usage-with-react"><a name="usage-with-react" class="plugin-anchor" href="#usage-with-react"><i class="fa fa-link" aria-hidden="true"></i></a>Usage With React</h1><p>By utilizing <a href="https://github.com/reactjs/react-redux" target="_blank">react-redux</a>, we keep a clean separation between container and presentational components and allow our application to grow more naturally. Container components allow you to control all implementation logic and data fetching for a presentational component. A presentational component should only blindly call a function or spit out data, it should not be concerned with anything else. Container components also give you free built in <code>shouldComponentUpdate</code> checks so your application will render quickly and not waste unneeded rerenders.</p><p>All presentational components should be rendered as stateless functional components. A presentational component should always be accompanied with a container component (e.g., <code>Todos</code> and <code>TodosContainer</code>). You should be utilizing <code>react-redux</code>&apos;s <code>connect</code> method as much as possible in your container components to eliminate unnecessary rerenders.</p><p>For more information and insight into container and presentational components we recommend giving <a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0" target="_blank">https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0</a> and <a href="http://redux.js.org/docs/basics/UsageWithReact.html" target="_blank">http://redux.js.org/docs/basics/UsageWithReact.html</a> a read as they provide excellent descriptions and examples.</p><h2 id="avoid-coupling-to-the-state-of-another-module"><a name="avoid-coupling-to-the-state-of-another-module" class="plugin-anchor" href="#avoid-coupling-to-the-state-of-another-module"><i class="fa fa-link" aria-hidden="true"></i></a>Avoid Coupling to the State of Another Module</h2><p>If, in our <code>projects</code> and <code>todos</code> examples, <code>projects</code> needed to grab information from the <code>todos</code> state in order to render a component, you should provide an interface from the <code>todos</code> state rather than interact with the <code>todos</code> state directly:</p><p><strong>BAD</strong></p><pre><code class="lang-javascript"><span class="token keyword">const</span> ProjectTodos <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> todos <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span>
-  <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
-    <span class="token punctuation">{</span>todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>t <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token operator">&lt;</span>TodoItem todo<span class="token operator">=</span><span class="token punctuation">{</span>t<span class="token punctuation">}</span><span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                <h1 id="usage-with-react">Usage With React</h1><p>By utilizing <a href="https://github.com/reactjs/react-redux" target="_blank">react-redux</a>, we keep a clean separation between container and presentational components and allow our application to grow more naturally. Container components allow you to control all implementation logic and data fetching for a presentational component. A presentational component should only blindly call a function or spit out data, it should not be concerned with anything else. Container components also give you free built in <code>shouldComponentUpdate</code> checks so your application will render quickly and not waste unneeded rerenders.</p><p>All presentational components should be rendered as stateless functional components. A presentational component should always be accompanied with a container component (e.g., <code>Todos</code> and <code>TodosContainer</code>). You should be utilizing <code>react-redux</code>&apos;s <code>connect</code> method as much as possible in your container components to eliminate unnecessary rerenders.</p><p>For more information and insight into container and presentational components we recommend giving <a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0" target="_blank">https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0</a> and <a href="http://redux.js.org/docs/basics/UsageWithReact.html" target="_blank">http://redux.js.org/docs/basics/UsageWithReact.html</a> a read as they provide excellent descriptions and examples.</p><h2 id="avoid-coupling-to-the-state-of-another-module">Avoid Coupling to the State of Another Module</h2><p>If, in our <code>projects</code> and <code>todos</code> examples, <code>projects</code> needed to grab information from the <code>todos</code> state in order to render a component, you should provide an interface from the <code>todos</code> state rather than interact with the <code>todos</code> state directly:</p><p><strong>BAD</strong></p><pre><code class="lang-javascript">const ProjectTodos = ({ todos }) =&gt; (
+  &lt;div&gt;
+    {todos.map(t =&gt; &lt;TodoItem todo={t}/&gt;)}
+  &lt;/div&gt;
+);
 
-<span class="token keyword">const</span> ProjectTodosContainer <span class="token operator">=</span> <span class="token function">connect</span><span class="token punctuation">(</span>
-  <span class="token punctuation">(</span>state<span class="token punctuation">,</span> <span class="token punctuation">{</span> projectId <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> project <span class="token operator">=</span> state<span class="token punctuation">.</span>projects<span class="token punctuation">[</span>projectId<span class="token punctuation">]</span><span class="token punctuation">;</span>
+const ProjectTodosContainer = connect(
+  (state, { projectId }) =&gt; {
+    const project = state.projects[projectId];
 
-    <span class="token comment" spellcheck="true">// This couples to the todos state</span>
-    <span class="token keyword">const</span> todos <span class="token operator">=</span> state<span class="token punctuation">.</span>todos<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>
-      t <span class="token operator">=</span><span class="token operator">&gt;</span> project<span class="token punctuation">.</span>todos<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>id<span class="token punctuation">)</span>
-    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    // This couples to the todos state
+    const todos = state.todos.filter(
+      t =&gt; project.todos.includes(t.id)
+    );
 
-    <span class="token keyword">return</span> <span class="token punctuation">{</span> todos <span class="token punctuation">}</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">)</span><span class="token punctuation">(</span>ProjectTodos<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p><strong>GOOD</strong></p><pre><code class="lang-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> createSelector <span class="token punctuation">}</span> from <span class="token string">&apos;reselect&apos;</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> activeProject <span class="token punctuation">}</span> from <span class="token string">&apos;state/projects/selectors&apos;</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> allTodos <span class="token punctuation">}</span> from <span class="token string">&apos;state/todos/selectors&apos;</span><span class="token punctuation">;</span>
+    return { todos };
+  }
+)(ProjectTodos);</code></pre>
+<p><strong>GOOD</strong></p><pre><code class="lang-javascript">import { createSelector } from &apos;reselect&apos;;
+import { activeProject } from &apos;state/projects/selectors&apos;;
+import { allTodos } from &apos;state/todos/selectors&apos;;
 
-<span class="token keyword">const</span> ProjectTodos <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> todos <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span>
-  <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
-    <span class="token punctuation">{</span>todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>t <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token operator">&lt;</span>TodoItem todo<span class="token operator">=</span><span class="token punctuation">{</span>t<span class="token punctuation">}</span><span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span>
+const ProjectTodos = ({ todos }) =&gt; (
+  &lt;div&gt;
+    {todos.map(t =&gt; &lt;TodoItem todo={t}/&gt;)}
+  &lt;/div&gt;
+);
 
-<span class="token keyword">const</span> ProjectTodosContainer <span class="token operator">=</span> <span class="token function">connect</span><span class="token punctuation">(</span>
-  <span class="token function">createSelector</span><span class="token punctuation">(</span>
-    activeProject<span class="token punctuation">,</span>
-    <span class="token comment" spellcheck="true">// here we let the todos selector provide the implementation for us</span>
-    allTodos<span class="token punctuation">,</span>
-    <span class="token punctuation">(</span>project<span class="token punctuation">,</span> todos<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
-      todos<span class="token punctuation">:</span> todos<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>t <span class="token operator">=</span><span class="token operator">&gt;</span> project<span class="token punctuation">.</span>todos<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span>
-  <span class="token punctuation">)</span>
-<span class="token punctuation">)</span><span class="token punctuation">(</span>ProjectTodos<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+const ProjectTodosContainer = connect(
+  createSelector(
+    activeProject,
+    // here we let the todos selector provide the implementation for us
+    allTodos,
+    (project, todos) =&gt; ({
+      todos: todos.filter(t =&gt; project.todos.includes(t.id))
+    })
+  )
+)(ProjectTodos);</code></pre>
 <p>The <code>GOOD</code> example is powerful, because you can freely change the structure of the <code>todos</code> and <code>projects</code> states without worrying about updating the <code>ProjectTodosContainer</code> component. This way, if you need to refactor your state, you can simply update your selectors instead of updating numerous container components.</p>
                                 
                                 </section>
                             
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
-</div>
-
                         </div>
                     </div>
                 
@@ -306,7 +258,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Usage with React","level":"1.5","depth":1,"next":{"title":"Using Redux Generators","level":"1.6","depth":1,"path":"sections/redux-generators.md","ref":"sections/redux-generators.md","articles":[]},"previous":{"title":"Reducers & Immutable Data","level":"1.4","depth":1,"path":"sections/reducers-immutable.md","ref":"sections/reducers-immutable.md","articles":[]},"dir":"ltr"},"config":{"plugins":["ga","prism","image-captions","anchors","sidebar-ad","-highlight","-fontsettings"],"root":"./src","styles":{"website":"bpxl-theme.css"},"pluginsConfig":{"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sidebar-ad":{"imageUrl":"https://blackpixel.com/assets/images/bpxl-logo-vertical.svg","url":"https://blackpixel.com"},"ga":{"configuration":"auto","token":"UA-26426132-7"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"image-captions":{"caption":"_CAPTION_","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"sections/folder-file-structure.html#fig1.2.1","level":"1.2","list_caption":"Figure: A common file architecture found in boilerplate and examples","caption":"A common file architecture found in boilerplate and examples","alt":"A common file architecture found in boilerplate and examples","nro":1,"url":"images/folder-layout-bad.png","index":1,"page_level":"1.2","label":"A common file architecture found in boilerplate and examples","attributes":{},"skip":false,"key":"1.2.1"},{"backlink":"sections/folder-file-structure.html#fig1.2.2","level":"1.2","list_caption":"Figure: Our previous layout example from above modified to follow our new pattern","caption":"Our previous layout example from above modified to follow our new pattern","alt":"Our previous layout example from above modified to follow our new pattern","nro":2,"url":"images/folder-layout-good.png","index":2,"page_level":"1.2","label":"Our previous layout example from above modified to follow our new pattern","attributes":{},"skip":false,"key":"1.2.2"},{"backlink":"sections/folder-file-structure.html#fig1.2.3","level":"1.2","list_caption":"Figure: An example nested tree architecture","caption":"An example nested tree architecture","alt":"An example nested tree architecture","nro":3,"url":"images/folder-layout-nested.png","index":3,"page_level":"1.2","label":"An example nested tree architecture","attributes":{},"skip":false,"key":"1.2.3"}]},"title":"Black Pixel Redux Handbook","gitbook":"3.2.0-pre.1"},"file":{"path":"sections/react-redux.md","mtime":"2016-07-07T01:15:31.000Z","type":"markdown"},"gitbook":{"version":"3.2.0-pre.1","time":"2016-07-18T16:36:34.168Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Usage with React","level":"1.5","depth":1,"next":{"title":"Using Redux Generators","level":"1.6","depth":1,"path":"sections/redux-generators.md","ref":"sections/redux-generators.md","articles":[]},"previous":{"title":"Reducers & Immutable Data","level":"1.4","depth":1,"path":"sections/reducers-immutable.md","ref":"sections/reducers-immutable.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-fontsettings"],"root":"./src","styles":{"website":"bpxl-theme.css"},"pluginsConfig":{"highlight":{},"search":{"maxIndexSize":1000000},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Black Pixel Redux Handbook","gitbook":"3.2.0-pre.1"},"file":{"path":"sections/react-redux.md","mtime":"2020-06-25T05:14:19.907Z","type":"markdown"},"gitbook":{"version":"3.2.0-pre.1","time":"2020-06-25T05:15:17.399Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -316,11 +268,7 @@
     <script src="../gitbook/theme.js"></script>
     
         
-        <script src="../gitbook/gitbook-plugin-ga/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        <script src="../gitbook/gitbook-plugin-search/lunr.min.js"></script>
         
     
         

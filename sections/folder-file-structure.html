@@ -17,19 +17,7 @@
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-image-captions/image-captions.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-sidebar-ad/sidebar-ad.css">
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
                 
@@ -69,12 +57,7 @@
 <div class="book">
     <div class="book-summary">
         
-  
             
-<div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search" />
-</div>
-
             
                 <nav role="navigation">
                 
@@ -184,18 +167,6 @@
                 </nav>
             
         
-  <div class="sidebar-addition">
-      
-        <a href="https://blackpixel.com" target="_blank">
-      
-        <img src="https://blackpixel.com/assets/images/bpxl-logo-vertical.svg" />
-      
-        </a>
-      
-      
-      
-  </div>
-
     </div>
 
     <div class="book-body">
@@ -220,30 +191,27 @@
                     <div class="page-wrapper" tabindex="-1" role="main">
                         <div class="page-inner">
                             
-<div id="book-search-results">
-    <div class="search-noresults">
-    
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="folder--file-structure"><a name="folder--file-structure" class="plugin-anchor" href="#folder--file-structure"><i class="fa fa-link" aria-hidden="true"></i></a>Folder &amp; File Structure</h1><p>For all of these examples let&apos;s assume this is the current state tree:</p><pre><code class="lang-javascript"><span class="token punctuation">{</span>
-  projects<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-  todos<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span></code></pre>
-<hr><p>In most boilerplates and examples, authors lump together reducers, selectors, actions, and container components:</p><figure id="fig1.2.1"><img alt="A common file architecture found in boilerplate and examples" src="images/folder-layout-bad.png"><figcaption>A common file architecture found in boilerplate and examples</figcaption></figure><p>This is reasonable when first starting out with Redux but quickly fails as your project scales. After a while, maintaining your state to props functions inside container components can be cumbersome due to state structure changes or property renames. Also, it can be hard for a new developer coming to a project to get a feel for how components are composed or where / how their data is being created.</p><p>The structure of your folders should be an exact one-to-one representation of your current state tree. This makes it incredibly easy to reason about and visualize your state. It also keeps a nice clean separation of concerns between data sources (more about this later).</p><figure id="fig1.2.2"><img alt="Our previous layout example from above modified to follow our new pattern" src="images/folder-layout-good.png"><figcaption>Our previous layout example from above modified to follow our new pattern</figcaption></figure><p>With this pattern you can infinitely nest your state tree while maintaining a clear idea as to where the appropriate files you need to work on are located. It also makes sense to colocate your reducer, actions, and selectors near each other to advocate the use of isolated state sections and decoupled data.</p><p>If there are any utility methods that need to be added to selectors, reducers, or actions, you now have the flexibility to put them in a features folder (if it&apos;s an isolated method) or in a <code>utils.js</code> file in the root of your state folder, if the method is used in various places.</p><h2 id="nested-state-tree"><a name="nested-state-tree" class="plugin-anchor" href="#nested-state-tree"><i class="fa fa-link" aria-hidden="true"></i></a>Nested State Tree</h2><p>For nested state trees, still follow the rule of matching your folders to your state. For example, if our state changed to this:</p><pre><code class="lang-javascript"><span class="token punctuation">{</span>
-  projects<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-  todos<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-    active<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-    archived<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-  <span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span></code></pre>
-<p>Your folder structure would look like this:</p><figure id="fig1.2.3"><img alt="An example nested tree architecture" src="images/folder-layout-nested.png"><figcaption>An example nested tree architecture</figcaption></figure><p>In your parent reducers, you can utilize Redux&apos;s <code>combineReducers</code> method to group your child reducers together.</p><h2 id="action-type-definitions"><a name="action-type-definitions" class="plugin-anchor" href="#action-type-definitions"><i class="fa fa-link" aria-hidden="true"></i></a>Action Type Definitions</h2><p>All action type definitions should live inside a <code>action-types.js</code> file in the root of your <code>state</code> folder. This keeps all of our actions contained and allows us to add and update new ones with relative ease.</p><pre><code class="lang-javascript"><span class="token keyword">export</span> <span class="token keyword">const</span> PROJECT_ADD <span class="token operator">=</span> <span class="token string">&apos;PROJECT_ADD&apos;</span><span class="token punctuation">;</span>
-<span class="token keyword">export</span> <span class="token keyword">const</span> PROJECT_REMOVE <span class="token operator">=</span> <span class="token string">&apos;PROJECT_REMOVE&apos;</span><span class="token punctuation">;</span>
+                                <h1 id="folder--file-structure">Folder &amp; File Structure</h1><p>For all of these examples let&apos;s assume this is the current state tree:</p><pre><code class="lang-javascript">{
+  projects: [],
+  todos: [],
+}</code></pre>
+<hr><p>In most boilerplates and examples, authors lump together reducers, selectors, actions, and container components:</p><p><img alt="A common file architecture found in boilerplate and examples" src="images/folder-layout-bad.png"></p><p>This is reasonable when first starting out with Redux but quickly fails as your project scales. After a while, maintaining your state to props functions inside container components can be cumbersome due to state structure changes or property renames. Also, it can be hard for a new developer coming to a project to get a feel for how components are composed or where / how their data is being created.</p><p>The structure of your folders should be an exact one-to-one representation of your current state tree. This makes it incredibly easy to reason about and visualize your state. It also keeps a nice clean separation of concerns between data sources (more about this later).</p><p><img alt="Our previous layout example from above modified to follow our new pattern" src="images/folder-layout-good.png"></p><p>With this pattern you can infinitely nest your state tree while maintaining a clear idea as to where the appropriate files you need to work on are located. It also makes sense to colocate your reducer, actions, and selectors near each other to advocate the use of isolated state sections and decoupled data.</p><p>If there are any utility methods that need to be added to selectors, reducers, or actions, you now have the flexibility to put them in a features folder (if it&apos;s an isolated method) or in a <code>utils.js</code> file in the root of your state folder, if the method is used in various places.</p><h2 id="nested-state-tree">Nested State Tree</h2><p>For nested state trees, still follow the rule of matching your folders to your state. For example, if our state changed to this:</p><pre><code class="lang-javascript">{
+  projects: [],
+  todos: {
+    active: [],
+    archived: [],
+  },
+}</code></pre>
+<p>Your folder structure would look like this:</p><p><img alt="An example nested tree architecture" src="images/folder-layout-nested.png"></p><p>In your parent reducers, you can utilize Redux&apos;s <code>combineReducers</code> method to group your child reducers together.</p><h2 id="action-type-definitions">Action Type Definitions</h2><p>All action type definitions should live inside a <code>action-types.js</code> file in the root of your <code>state</code> folder. This keeps all of our actions contained and allows us to add and update new ones with relative ease.</p><pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> PROJECT_ADD = <span class="hljs-string">&apos;PROJECT_ADD&apos;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> PROJECT_REMOVE = <span class="hljs-string">&apos;PROJECT_REMOVE&apos;</span>;
 
-<span class="token comment" spellcheck="true">// block sections together via a new line</span>
+<span class="hljs-comment">// block sections together via a new line</span>
 
-<span class="token keyword">export</span> <span class="token keyword">const</span> TODO_ADD <span class="token operator">=</span> <span class="token string">&apos;TODO_ADD&apos;</span><span class="token punctuation">;</span>
-<span class="token keyword">export</span> <span class="token keyword">const</span> TODO_REMOVE <span class="token operator">=</span> <span class="token string">&apos;TODO_REMOVE&apos;</span><span class="token punctuation">;</span></code></pre>
-<p>You can read about conventions for actions in the <a href="actions-action-creators.html">Actions &amp; Action Creators</a> chapter.</p><h2 id="store-composer"><a name="store-composer" class="plugin-anchor" href="#store-composer"><i class="fa fa-link" aria-hidden="true"></i></a>Store Composer</h2><p>The main store composer should live inside a <code>index.js</code> file in the root of your <code>state</code> folder. The store composer should <em>only</em> do the following things:</p><ul><li>Combine all reducers
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> TODO_ADD = <span class="hljs-string">&apos;TODO_ADD&apos;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> TODO_REMOVE = <span class="hljs-string">&apos;TODO_REMOVE&apos;</span>;</code></pre>
+<p>You can read about conventions for actions in the <a href="actions-action-creators.html">Actions &amp; Action Creators</a> chapter.</p><h2 id="store-composer">Store Composer</h2><p>The main store composer should live inside a <code>index.js</code> file in the root of your <code>state</code> folder. The store composer should <em>only</em> do the following things:</p><ul><li>Combine all reducers
 </li>
 <li>Setup middleware
 </li>
@@ -251,34 +219,18 @@
 </li>
 <li>Export store instance
 </li></ul>
-<pre><code class="lang-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> createStore<span class="token punctuation">,</span> applyMiddleware <span class="token punctuation">}</span> from <span class="token string">&apos;redux&apos;</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> thunk from <span class="token string">&apos;redux-thunk&apos;</span><span class="token punctuation">;</span>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { createStore, applyMiddleware } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux&apos;</span>;
+<span class="hljs-keyword">import</span> thunk <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;redux-thunk&apos;</span>;
 
-<span class="token comment" spellcheck="true">// reducer import removed for brevity</span>
-<span class="token keyword">const</span> reducers <span class="token operator">=</span> <span class="token function">combineReducers</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">createStore</span><span class="token punctuation">(</span>reducers<span class="token punctuation">,</span> <span class="token function">applyMiddleware</span><span class="token punctuation">(</span>thunk<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="hljs-comment">// reducer import removed for brevity</span>
+<span class="hljs-keyword">const</span> reducers = combineReducers(...);
+<span class="hljs-keyword">const</span> store = createStore(reducers, applyMiddleware(thunk));
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> store<span class="token punctuation">;</span></code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store;</code></pre>
 
                                 
                                 </section>
                             
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
-</div>
-
                         </div>
                     </div>
                 
@@ -302,7 +254,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Folder & File Structure","level":"1.2","depth":1,"next":{"title":"Actions & Action Creators","level":"1.3","depth":1,"path":"sections/actions-action-creators.md","ref":"sections/actions-action-creators.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["ga","prism","image-captions","anchors","sidebar-ad","-highlight","-fontsettings"],"root":"./src","styles":{"website":"bpxl-theme.css"},"pluginsConfig":{"prism":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sidebar-ad":{"imageUrl":"https://blackpixel.com/assets/images/bpxl-logo-vertical.svg","url":"https://blackpixel.com"},"ga":{"configuration":"auto","token":"UA-26426132-7"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"image-captions":{"caption":"_CAPTION_","variable_name":"_pictures"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"sections/folder-file-structure.html#fig1.2.1","level":"1.2","list_caption":"Figure: A common file architecture found in boilerplate and examples","caption":"A common file architecture found in boilerplate and examples","alt":"A common file architecture found in boilerplate and examples","nro":1,"url":"images/folder-layout-bad.png","index":1,"page_level":"1.2","label":"A common file architecture found in boilerplate and examples","attributes":{},"skip":false,"key":"1.2.1"},{"backlink":"sections/folder-file-structure.html#fig1.2.2","level":"1.2","list_caption":"Figure: Our previous layout example from above modified to follow our new pattern","caption":"Our previous layout example from above modified to follow our new pattern","alt":"Our previous layout example from above modified to follow our new pattern","nro":2,"url":"images/folder-layout-good.png","index":2,"page_level":"1.2","label":"Our previous layout example from above modified to follow our new pattern","attributes":{},"skip":false,"key":"1.2.2"},{"backlink":"sections/folder-file-structure.html#fig1.2.3","level":"1.2","list_caption":"Figure: An example nested tree architecture","caption":"An example nested tree architecture","alt":"An example nested tree architecture","nro":3,"url":"images/folder-layout-nested.png","index":3,"page_level":"1.2","label":"An example nested tree architecture","attributes":{},"skip":false,"key":"1.2.3"}]},"title":"Black Pixel Redux Handbook","gitbook":"3.2.0-pre.1"},"file":{"path":"sections/folder-file-structure.md","mtime":"2016-07-07T01:15:31.000Z","type":"markdown"},"gitbook":{"version":"3.2.0-pre.1","time":"2016-07-18T16:36:34.168Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Folder & File Structure","level":"1.2","depth":1,"next":{"title":"Actions & Action Creators","level":"1.3","depth":1,"path":"sections/actions-action-creators.md","ref":"sections/actions-action-creators.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-fontsettings"],"root":"./src","styles":{"website":"bpxl-theme.css"},"pluginsConfig":{"highlight":{},"search":{"maxIndexSize":1000000},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Black Pixel Redux Handbook","gitbook":"3.2.0-pre.1"},"file":{"path":"sections/folder-file-structure.md","mtime":"2020-06-25T05:14:19.907Z","type":"markdown"},"gitbook":{"version":"3.2.0-pre.1","time":"2020-06-25T05:15:17.399Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -312,11 +264,7 @@
     <script src="../gitbook/theme.js"></script>
     
         
-        <script src="../gitbook/gitbook-plugin-ga/plugin.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        <script src="../gitbook/gitbook-plugin-search/lunr.min.js"></script>
         
     
         
