@@ -3,9 +3,16 @@
   "title": "Black Pixel Redux Handbook",
   "root": "./src",
   "plugins": [
+    "prism",
+    "image-captions",
+    "anchors",
+    "-highlight",
     "-fontsettings"
   ],
   "pluginsConfig": {
+    "image-captions": {
+      "caption": "_CAPTION_"
+    }
   },
   "styles": {
     "website": "bpxl-theme.css"

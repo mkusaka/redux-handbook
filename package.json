@@ -8,17 +8,19 @@
     "url": "git://github.com/bpxl-labs/redux-handbook.git"
   },
   "scripts": {
-    "prepare": "gitbook install",
-    "watch": "npm run prepare && gitbook serve",
-    "build": "npm run prepare && rm -rf _book && gitbook build",
-    "deploy": "yarn run build && gh-pages -d _book"
+    "watch": "honkit serve",
+    "build": "rm -rf _book && honkit build",
+    "deploy": "yarn run build && yarn gh-pages -d _book"
   },
   "author": "Black Pixel",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "gitbook-plugin-anchors": "^0.7.1",
+    "gitbook-plugin-image-captions": "^3.1.0",
+    "gitbook-plugin-prism": "^2.4.0"
+  },
   "devDependencies": {
     "gh-pages": "^3.1.0",
-    "gitbook": "^2.6.9",
-    "gitbook-cli": "^2.3.2"
+    "honkit": "^3.4.0"
   }
 }
