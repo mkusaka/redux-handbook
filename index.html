@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Introduction · Black Pixel Redux Handbook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Introduction · Black Pixel Redux Handbook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.0-pre.1">
+        <meta name="generator" content="HonKit 3.4.0">
         
         
         
@@ -17,7 +17,15 @@
     
             
                 
-                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-image-captions/image-captions.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
                 
             
                 
@@ -56,6 +64,10 @@
     <div class="book-summary">
         
             
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
             
                 <nav role="navigation">
                 
@@ -155,8 +167,8 @@
     <li class="divider"></li>
 
     <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
         </a>
     </li>
 </ul>
@@ -189,15 +201,18 @@
                     <div class="page-wrapper" tabindex="-1" role="main">
                         <div class="page-inner">
                             
+<div id="book-search-results">
+    <div class="search-noresults">
+    
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="black-pixel-redux-handbook"><a href="http://bpxl-labs.github.io/redux-handbook/" target="_blank">Black Pixel Redux Handbook</a></h1><h3 id="redux-what-is-it">Redux: What Is It?</h3><p><a href="http://redux.js.org/" target="_blank">Redux</a> is a state management library written by Dan Abramov. It is often used in combination with <a href="https://facebook.github.io/react/" target="_blank">React</a> to pull state out from the view layer into a single store. In simple terms, any data that may change ends up living in Redux, which then gets wired up to your React containers to provide the means to <strong>read</strong> from or <strong>write</strong> to your state object.</p><p>When using Redux, your implementation typically focuses on one of three areas:</p><ul><li>Actions, which describe both the type and any relevant data that you use to communicate updates to the store,
+                                <h1 id="black-pixel-redux-handbook"><a name="black-pixel-redux-handbook" class="plugin-anchor" href="#black-pixel-redux-handbook"><i class="fa fa-link" aria-hidden="true"></i></a><a href="http://bpxl-labs.github.io/redux-handbook/" target="_blank">Black Pixel Redux Handbook</a></h1><h3 id="redux-what-is-it"><a name="redux-what-is-it" class="plugin-anchor" href="#redux-what-is-it"><i class="fa fa-link" aria-hidden="true"></i></a>Redux: What Is It?</h3><p><a href="http://redux.js.org/" target="_blank">Redux</a> is a state management library written by Dan Abramov. It is often used in combination with <a href="https://facebook.github.io/react/" target="_blank">React</a> to pull state out from the view layer into a single store. In simple terms, any data that may change ends up living in Redux, which then gets wired up to your React containers to provide the means to <strong>read</strong> from or <strong>write</strong> to your state object.</p><p>When using Redux, your implementation typically focuses on one of three areas:</p><ul><li>Actions, which describe both the type and any relevant data that you use to communicate updates to the store,
 </li>
 <li>Reducers, which is the code that actually performs the update to the store based on the Actions,
 </li>
 <li>Containers, which is the &quot;glue&quot; that binds Redux to your components using <a href="https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750#.jxumv6uhb" target="_blank">higher order components</a>. Your containers provide the means to interact with Redux by allowing you to wire up state properties or action creators that your components receive as props.
 </li></ul>
-<p>If you are new to Redux, the <a href="http://redux.js.org/index.html" target="_blank">docs</a> are an excellent place to start.</p><h3 id="why-we-use-it">Why We Use It</h3><p>Redux is an evolution of the <a href="https://facebook.github.io/flux/docs/overview.html" target="_blank">Flux</a> architecture and has similar goals, namely pulling application state out of the view layer and providing the means to interact with it. There are a few key differences between the two, such as:</p><ul><li>Flux often advocates for multiple stores, whereas Redux has a single store and uses &quot;reducer&quot; functions to allow for a separation of concerns.
+<p>If you are new to Redux, the <a href="http://redux.js.org/index.html" target="_blank">docs</a> are an excellent place to start.</p><h3 id="why-we-use-it"><a name="why-we-use-it" class="plugin-anchor" href="#why-we-use-it"><i class="fa fa-link" aria-hidden="true"></i></a>Why We Use It</h3><p>Redux is an evolution of the <a href="https://facebook.github.io/flux/docs/overview.html" target="_blank">Flux</a> architecture and has similar goals, namely pulling application state out of the view layer and providing the means to interact with it. There are a few key differences between the two, such as:</p><ul><li>Flux often advocates for multiple stores, whereas Redux has a single store and uses &quot;reducer&quot; functions to allow for a separation of concerns.
 </li>
 <li>Flux is an &quot;architecture&quot; with several implementations; Redux is a single library.
 </li>
@@ -215,10 +230,26 @@
 </li>
 <li>It has become very popular leading to quick adoption and community support through additional modules/middleware.
 </li></ul>
-<h3 id="are-there-downsides-to-using-redux">Are There Downsides to Using Redux?</h3><p>There is an excellent discussion on <a href="https://github.com/reactjs/redux/issues/1385" target="_blank">github</a> about this. An additional thing to consider is that your data should be represented in your state object in a normalized way. This may take more consideration depending on your data model/API design. Dan Abramov has provided another tool called <a href="https://github.com/paularmstrong/normalizr" target="_blank">normalizr</a>, which attempts to address this.</p>
+<h3 id="are-there-downsides-to-using-redux"><a name="are-there-downsides-to-using-redux" class="plugin-anchor" href="#are-there-downsides-to-using-redux"><i class="fa fa-link" aria-hidden="true"></i></a>Are There Downsides to Using Redux?</h3><p>There is an excellent discussion on <a href="https://github.com/reactjs/redux/issues/1385" target="_blank">github</a> about this. An additional thing to consider is that your data should be represented in your state object in a normalized way. This may take more consideration depending on your data model/API design. Dan Abramov has provided another tool called <a href="https://github.com/paularmstrong/normalizr" target="_blank">normalizr</a>, which attempts to address this.</p>
                                 
                                 </section>
                             
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
                         </div>
                     </div>
                 
@@ -238,7 +269,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Folder & File Structure","level":"1.2","depth":1,"path":"sections/folder-file-structure.md","ref":"sections/folder-file-structure.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-fontsettings"],"root":"./src","styles":{"website":"bpxl-theme.css"},"pluginsConfig":{"highlight":{},"search":{"maxIndexSize":1000000},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Black Pixel Redux Handbook","gitbook":"3.2.0-pre.1"},"file":{"path":"README.md","mtime":"2020-06-25T05:23:15.910Z","type":"markdown"},"gitbook":{"version":"3.2.0-pre.1","time":"2020-06-25T05:24:12.980Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Folder & File Structure","level":"1.2","depth":1,"path":"sections/folder-file-structure.md","ref":"sections/folder-file-structure.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","image-captions","anchors","-highlight","-fontsettings"],"root":"./src","styles":{"website":"bpxl-theme.css"},"pluginsConfig":{"image-captions":{"caption":"_CAPTION_","variable_name":"_pictures"},"prism":{},"anchors":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"sections/folder-file-structure.html#fig1.2.1","level":"1.2","list_caption":"Figure: A common file architecture found in boilerplate and examples","alt":"A common file architecture found in boilerplate and examples","nro":1,"url":"images/folder-layout-bad.png","index":1,"caption_template":"_CAPTION_","label":"A common file architecture found in boilerplate and examples","attributes":{},"skip":false,"key":"1.2.1"},{"backlink":"sections/folder-file-structure.html#fig1.2.2","level":"1.2","list_caption":"Figure: Our previous layout example from above modified to follow our new pattern","alt":"Our previous layout example from above modified to follow our new pattern","nro":2,"url":"images/folder-layout-good.png","index":2,"caption_template":"_CAPTION_","label":"Our previous layout example from above modified to follow our new pattern","attributes":{},"skip":false,"key":"1.2.2"},{"backlink":"sections/folder-file-structure.html#fig1.2.3","level":"1.2","list_caption":"Figure: An example nested tree architecture","alt":"An example nested tree architecture","nro":3,"url":"images/folder-layout-nested.png","index":3,"caption_template":"_CAPTION_","label":"An example nested tree architecture","attributes":{},"skip":false,"key":"1.2.3"}]},"title":"Black Pixel Redux Handbook","gitbook":"3.2.0-pre.1"},"file":{"path":"README.md","mtime":"2020-06-28T09:36:00.136Z","type":"markdown"},"gitbook":{"version":"3.4.0","time":"2020-06-28T09:36:18.642Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -248,7 +279,7 @@
     <script src="gitbook/theme.js"></script>
     
         
-        <script src="gitbook/gitbook-plugin-search/lunr.min.js"></script>
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
         
     
         
@@ -261,10 +292,6 @@
     
         
         <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
 
